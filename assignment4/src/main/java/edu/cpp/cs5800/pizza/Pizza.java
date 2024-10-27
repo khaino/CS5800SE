@@ -61,6 +61,7 @@ public class Pizza {
     }
 
     public String eat() {
-        return "Eating a " + this.size + " pizza at " +  this.chainName + " with " + this.toppings.size() + " toppings: " + this.toppings;
+        String msgTmpl = "Eating a %s pizza at %s with %d toppings: %s";
+        return String.format(msgTmpl, this.size, this.chainName, this.toppings.size(), this.toppings);
     }
 }
