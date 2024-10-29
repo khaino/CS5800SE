@@ -1,7 +1,5 @@
-package edu.cpp.cs5800;
+package edu.cpp.cs5800.pizza;
 
-import edu.cpp.cs5800.pizza.Dominos;
-import edu.cpp.cs5800.pizza.Pizza;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

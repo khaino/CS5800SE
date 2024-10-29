@@ -1,4 +1,4 @@
-package edu.cpp.cs5800;
+package edu.cpp.cs5800.pizza;
 
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;

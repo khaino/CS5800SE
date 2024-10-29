@@ -1,7 +1,7 @@
-package edu.cpp.cs5800;
+package edu.cpp.cs5800.pizza;
 
-import edu.cpp.cs5800.pizza.Pizza;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
