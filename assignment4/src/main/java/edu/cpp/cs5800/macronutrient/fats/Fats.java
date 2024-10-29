@@ -1,4 +1,12 @@
-package edu.cpp.cs5800.macronutrient;
+package edu.cpp.cs5800.macronutrient.fats;
 
-public abstract class Fats {
+import edu.cpp.cs5800.macronutrient.Food;
+
+public abstract class Fats extends Food {
+    private final static String type = "Fats";
+
+    public String getType() {
+        return type;
+    }
+
 }

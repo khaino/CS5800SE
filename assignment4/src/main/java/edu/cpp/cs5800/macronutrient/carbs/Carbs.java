@@ -1,10 +1,11 @@
-package edu.cpp.cs5800.macronutrient;
+package edu.cpp.cs5800.macronutrient.carbs;
 
-public abstract class Carbs {
+import edu.cpp.cs5800.macronutrient.Food;
+
+public abstract class Carbs extends Food {
     private final static String type = "Carbs";
 
     public String getType() {
         return type;
     }
-    public abstract String getName();
 }

@@ -1,4 +1,0 @@
-package edu.cpp.cs5800.macronutrient;
-
-public abstract class Protein {
-}

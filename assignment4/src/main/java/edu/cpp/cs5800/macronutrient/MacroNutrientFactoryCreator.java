@@ -5,8 +5,8 @@ import edu.cpp.cs5800.macronutrient.diet.NutAllergy;
 import edu.cpp.cs5800.macronutrient.diet.Paleo;
 import edu.cpp.cs5800.macronutrient.diet.Vegan;
 
-public class FactoryCreator {
-    public static MacronutrientFactory getMacronutrientFactory(Diet diet) {
+public class MacroNutrientFactoryCreator {
+    public static MacronutrientFactory createFactory(Diet diet) {
         return switch (diet) {
             case Vegan vegan -> VeganMealFactory.getInstance();
             case NutAllergy nutAllergy -> NutAllergyMealFactory.getInstance();
