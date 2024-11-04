@@ -12,9 +12,10 @@ public class Order {
         orderNo++;
     }
 
-    public void addItem(FoodItem item) {
+    public int addItem(FoodItem item) {
         this.totalPrice += item.getPrice();
         orderItems.add(item);
+        return orderItems.size();
     }
 
     public double getTotalPrice() {
