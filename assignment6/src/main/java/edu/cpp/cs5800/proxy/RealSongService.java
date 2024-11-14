@@ -50,7 +50,7 @@ public class RealSongService implements SongService {
         return songs;
     }
 
-    public void initialSongs() {
+    private void initialSongs() {
         allSongs.add(new Song("Shape of You", "Ed Sheeran", "Divide", 240));
         allSongs.add(new Song("Blinding Lights", "The Weeknd", "After Hours", 200));
         allSongs.add(new Song("Levitating", "Dua Lipa", "Future Nostalgia", 203));

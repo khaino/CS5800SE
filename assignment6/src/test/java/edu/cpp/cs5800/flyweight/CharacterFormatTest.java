@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CharacterTest {
+public class CharacterFormatTest {
     @Test
     public void testGetSymbol() {
         Character ch = new Character('A', null);

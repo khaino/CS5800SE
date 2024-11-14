@@ -10,7 +10,7 @@ public class CharacterFactory {
         String formatType = font.toString() + color.toString() + fontSize;
         CharacterFormat format = formats.get(formatType);
         if (format == null) {
-            format = new CharacterFormat(color, font, fontSize);
+            format = new CharacterFormat(font, color, fontSize);
         }
 
         return new Character(symbol, format);

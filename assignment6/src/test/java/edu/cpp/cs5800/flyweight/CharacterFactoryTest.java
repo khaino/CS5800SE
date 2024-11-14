@@ -4,16 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CharacterTest {
+public class CharacterFactoryTest {
     @Test
-    public void testGetSymbol() {
-        Character ch = new Character('A', null);
-        assertEquals(ch.getSymbol(), 'A');
-    }
+    public void testGetCharacter() {
+        String expected = "B(ARIAL,RED,12)";
+        Character actual = CharacterFactory.getCharacter('B', CharacterFormat.Font.ARIAL, CharacterFormat.Color.RED, 12);
 
-    @Test
-    public void testToString() {
-        Character ch = new Character('A', null);
-        assertEquals("A(null)", ch.toString());
+        assertEquals(expected, actual.toString());
     }
 }

@@ -1,7 +1,7 @@
 package edu.cpp.cs5800.proxy;
 
 public class Song {
-    private static int incrementId = 1;
+    protected static int incrementId = 1;
     private final Integer id;
     private final String title;
     private final String artist;

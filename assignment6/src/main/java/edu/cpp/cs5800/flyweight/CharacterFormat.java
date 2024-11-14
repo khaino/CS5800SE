@@ -13,7 +13,7 @@ public class CharacterFormat {
     private final Font font;
     private final int fontSize;
 
-    public CharacterFormat(Color color, Font font, int fontSize) {
+    public CharacterFormat(Font font, Color color, int fontSize) {
         this.color = color;
         this.font = font;
         this.fontSize = fontSize;
