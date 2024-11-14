@@ -3,9 +3,9 @@ package edu.cpp.quiz1;
 import java.util.List;
 
 public abstract class Book implements Cloneable {
-    protected String title;
-    protected String author;
-    protected List<String> chapters;
+    private String title;
+    private String author;
+    private List<String> chapters;
 
     public Book(String title, String author, List<String> chapters) {
         this.title = title;
