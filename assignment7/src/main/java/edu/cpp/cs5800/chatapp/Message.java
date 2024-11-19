@@ -48,11 +48,11 @@ public class Message {
         return timestamp;
     }
 
-    public MessageMemento takeSnapshot() {
-        return new MessageMemento(this.getId(), this.getContent(), this.getRecipients(), this.getSender(), this.getTimestamp());
+    public Memento takeSnapshot() {
+        return new Memento(this.getId(), this.getContent(), this.getRecipients(), this.getSender(), this.getTimestamp());
     }
 
-    public static Message restoreSnapshot(MessageMemento memento) {
+    public static Message restoreSnapshot(Memento memento) {
         return new Message(memento.getId(), memento.getContent(), memento.getRecipients(), memento.getSender(), memento.getTimestamp());
     }
 
@@ -78,5 +78,45 @@ public class Message {
                 ", sender=" + sender +
                 ", timestamp=" + timestamp +
                 '}';
+    }
+
+    public static class Memento {
+        private int id;
+        private String content;
+        private List<User> recipients;
+        private User sender;
+        private Date timestamp;
+
+        public Memento(int id,
+                              String content,
+                              List<User> recipients,
+                              User sender,
+                              Date timestamp) {
+            this.id = id;
+            this.content = content;
+            this.recipients = recipients;
+            this.sender = sender;
+            this.timestamp = timestamp;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public List<User> getRecipients() {
+            return recipients;
+        }
+
+        public User getSender() {
+            return sender;
+        }
+
+        public Date getTimestamp() {
+            return timestamp;
+        }
     }
 }

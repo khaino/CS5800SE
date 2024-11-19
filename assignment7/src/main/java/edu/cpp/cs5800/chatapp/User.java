@@ -9,16 +9,12 @@ public class User {
     private final int id;
     private final String username;
     private final ChatServer chatServer;
-    private MessageMemento memento;
+    private Message.Memento memento;
 
     public User(String username, ChatServer chatServer) {
         this.id = ++idIncrement;
         this.username = username;
         this.chatServer = chatServer;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getUsername() {
@@ -53,21 +49,6 @@ public class User {
 
     public Iterator<Message> getChatIterator() {
         return this.chatServer.getChatIterator(this);
-//        StringBuilder stringBuilder = new StringBuilder();
-//        Iterator<Message> chatIterator= this.chatServer.getChatIterator(this);
-//        while (chatIterator.hasNext()) {
-//            Message message = chatIterator.next();
-//            String time = message.getTimestamp().toString();
-//            String senderName = message.getSender().equals(this) ? getUsername(): message.getSender().getUsername();
-//            String recipient = senderName.equals(getUsername()) ? message.getRecipients().toString() : getUsername();
-//            String data = String.format("[%s]%s -> %s: %s",
-//                            time,
-//                            senderName,
-//                            recipient,
-//                            message.getContent());
-//            stringBuilder.append(data).append("\n");
-//        }
-//        return stringBuilder.toString();
     }
 
     public boolean blockUser(User user) {
@@ -95,10 +76,4 @@ public class User {
     public String toString() {
         return username;
     }
-
-//    @Override
-//    public Iterator<Message> iterator(User userToSearchWith) {
-//        Iterator<Message> iterator =  this.chatServer.getChatHistory(userToSearchWith);
-//        return new SearchMessagesByUser(iterator);
-//    }
 }
