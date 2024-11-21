@@ -1,37 +1,40 @@
-package edu.cpp.cs5800.quiz2.part1;
+package edu.cpp.cs5800.quiz2.part2;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Random;
 
 public class TrafficLight {
-    enum Color {
-        RED, YELLOW, GREEN
-    }
-
-    private Color color;
+    private String color;
+    private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public TrafficLight() {
         Random rand = new Random();
-        int i = rand.nextInt()  % 3;
+        int i = rand.nextInt() % 3;
         if (i == 0) {
-            color = Color.RED;
+            color = "RED";
         } else if (i == 1) {
-            color = Color.YELLOW;
+            color = "YELLOW";
         } else {
-            color = Color.GREEN;
+            color = "GREEN";
         }
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.support.addPropertyChangeListener(listener);
     }
 
     public void changeColor() {
-        if (color == Color.RED) {
-            color = Color.GREEN;
-        } else if (color == Color.YELLOW) {
-            color = Color.RED;
-        } else {
-            color = Color.YELLOW;
+        String newColor = color;
+        if (color == "RED") {
+            newColor = "GREEN";
+        } else if (color == "YELLOW") {
+            newColor = "RED";
+        } else if (color == "GREEN") {
+            newColor = "YELLOW";
         }
-    }
 
-    public Color getColor() {
-        return color;
+        support.firePropertyChange("color", this.color, newColor);
+        this.color = newColor;
     }
 }

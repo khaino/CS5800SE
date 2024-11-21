@@ -1,4 +1,12 @@
-package edu.cpp.cs5800.quiz2.part1;
+package edu.cpp.cs5800.quiz2.part2;
 
-public class Car extends Vehicle{
+import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Car extends Vehicle {
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        printNotification("Car", evt);
+    }
 }
