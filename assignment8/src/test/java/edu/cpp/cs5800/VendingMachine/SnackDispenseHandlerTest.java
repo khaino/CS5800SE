@@ -1,7 +1,5 @@
-package edu.cpp.cs5800.snacks;
+package edu.cpp.cs5800.VendingMachine;
 
-import edu.cpp.cs5800.SnackDispenseHandler;
-import edu.cpp.cs5800.VendingMachine;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

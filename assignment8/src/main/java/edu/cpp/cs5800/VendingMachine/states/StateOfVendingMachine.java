@@ -1,6 +1,6 @@
-package edu.cpp.cs5800.states;
+package edu.cpp.cs5800.VendingMachine.states;
 
-import edu.cpp.cs5800.VendingMachine;
+import edu.cpp.cs5800.VendingMachine.VendingMachine;
 
 public abstract class StateOfVendingMachine {
     protected VendingMachine vendingMachine;

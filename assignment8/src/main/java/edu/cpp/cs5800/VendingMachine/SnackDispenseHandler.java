@@ -1,6 +1,6 @@
-package edu.cpp.cs5800;
+package edu.cpp.cs5800.VendingMachine;
 
-import edu.cpp.cs5800.snacks.Snack;
+import edu.cpp.cs5800.VendingMachine.snacks.Snack;
 
 public class SnackDispenseHandler {
     private Snack snack;

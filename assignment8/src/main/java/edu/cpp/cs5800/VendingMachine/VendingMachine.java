@@ -1,8 +1,8 @@
-package edu.cpp.cs5800;
+package edu.cpp.cs5800.VendingMachine;
 
-import edu.cpp.cs5800.snacks.*;
-import edu.cpp.cs5800.states.Idle;
-import edu.cpp.cs5800.states.StateOfVendingMachine;
+import edu.cpp.cs5800.VendingMachine.snacks.*;
+import edu.cpp.cs5800.VendingMachine.states.Idle;
+import edu.cpp.cs5800.VendingMachine.states.StateOfVendingMachine;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,0 +1,129 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object "<u>:CharacterProperties</u>" as ab16 {
+    font = "Arial"
+    color = "Black"
+    size = 16
+}
+
+object "<u>:CharacterProperties</u>" as ab14 {
+    font = "Arial"
+    color = "Black"
+    size = 14
+}
+
+object "<u>:CharacterProperties</u>" as vb18 {
+    font = "Verdana"
+    color = "Blue"
+    size = 18
+}
+
+object "<u>:CharacterProperties</u>" as vb12 {
+    font = "Verdana"
+    color = "Red"
+    size = 12
+}
+
+object "<u>:CharacterProperties</u>" as cb99 {
+    font = "Calibri"
+    color = "Blue"
+    size = 99
+}
+
+object "<u>:Character</u>" as H1 {
+    character = 'H'
+}
+H1 o-- cb99
+
+object "<u>:Character</u>" as e1 {
+    character = 'e'
+}
+e1 o-- ab14
+object "<u>:Character</u>" as l1 {
+    character = 'l'
+}
+l1 o-- ab14
+object "<u>:Character</u>" as l2 {
+    character = 'l'
+}
+l2 o-- ab14
+object "<u>:Character</u>" as o1 {
+    character = 'o'
+}
+o1 o-- ab14
+object "<u>:Character</u>" as W1 {
+    character = 'W'
+}
+W1 o-- cb99
+object "<u>:Character</u>" as o2 {
+    character = 'o'
+}
+o2 o-- ab14
+object "<u>:Character</u>" as r1 {
+    character = 'r'
+}
+r1 o-- ab14
+object "<u>:Character</u>" as l3 {
+    character = 'l'
+}
+l3 o-- ab14
+object "<u>:Character</u>" as d1 {
+    character = 'd'
+}
+d1 o-- ab14
+object "<u>:Character</u>" as C1 {
+    character = 'C'
+}
+C1 o-- vb18
+object "<u>:Character</u>" as S1 {
+    character = 'S'
+}
+S1 o-- vb18
+object "<u>:Character</u>" as 5 {
+    character = '5'
+}
+5 o-- vb12
+object "<u>:Character</u>" as 8 {
+    character = '8'
+}
+8 o-- vb12
+
+object "<u>:Character</u>" as 01 {
+    character = 0
+}
+01 o-- vb12
+object "<u>:Character</u>" as 02 {
+    character = 0
+}
+02 o-- vb12
+
+object "<u>:CharacterPropertiesFactory</u>" as fac {
+
+}
+fac o-- ab16
+fac o-- ab14
+fac o-- vb18
+fac o-- vb12
+
+object "<u>:Document</u>" as doc {
+    characters = "HelloWorldCS5800"
+}
+doc *-- fac
+doc *-- H1
+doc *-- e1
+doc *-- l1
+doc *-- l2
+doc *-- o1
+doc *-- W1
+doc *-- o2
+doc *-- r1
+doc *-- l3
+doc *-- d1
+doc *-- C1
+doc *-- S1
+doc *-- 5
+doc *-- 8
+doc *-- 01
+doc *-- 02
+@enduml

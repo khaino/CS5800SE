@@ -1,4 +1,4 @@
-package edu.cpp.cs5800.snacks;
+package edu.cpp.cs5800.VendingMachine.snacks;
 
 public abstract class Snack {
     private static int idIncremnt = 1;

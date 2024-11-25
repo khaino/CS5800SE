@@ -1,4 +1,4 @@
-package edu.cpp.cs5800;
+package edu.cpp.cs5800.VendingMachine;
 
 public class Driver {
     public static void main(String[] args) {

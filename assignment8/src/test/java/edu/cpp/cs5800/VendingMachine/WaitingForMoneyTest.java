@@ -1,8 +1,6 @@
-package edu.cpp.cs5800.snacks;
+package edu.cpp.cs5800.VendingMachine;
 
-import edu.cpp.cs5800.VendingMachine;
-import edu.cpp.cs5800.states.Idle;
-import edu.cpp.cs5800.states.WaitingForMoney;
+import edu.cpp.cs5800.VendingMachine.states.WaitingForMoney;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
