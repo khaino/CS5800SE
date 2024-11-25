@@ -1,10 +1,10 @@
-package edu.cpp.cs5800.quiz2.part2;
+package edu.cpp.cs5800.quiz2.part3;
 
 public class Driver {
     public static void main(String[] args) {
-        Car car = new Car();
-        Motorcycle motorcycle = new Motorcycle();
-        Truck truck = new Truck();
+        Car car = new Car(new Aggrassive());
+        Motorcycle motorcycle = new Motorcycle(new Normal());
+        Truck truck = new Truck(new Passive());
 
         TrafficLight traffic = new TrafficLight();
         traffic.addPropertyChangeListener(car);

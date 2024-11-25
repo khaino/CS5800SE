@@ -1,12 +1,16 @@
-package edu.cpp.cs5800.quiz2.part2;
+package edu.cpp.cs5800.quiz2.part3;
 
 import java.beans.PropertyChangeEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Car extends Vehicle {
+    public Car(DrivingBehavior drivingBehavior) {
+        super(drivingBehavior);
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        printNotification("Car", evt);
+        String color = (String) evt.getNewValue();
+
+        printNotification("Car", this.drivingBehavior.action(color));
     }
 }
