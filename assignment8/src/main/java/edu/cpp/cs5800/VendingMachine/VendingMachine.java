@@ -16,6 +16,7 @@ public class VendingMachine {
     private Map<Integer, Snack> stocks = new HashMap<>();
 
     public VendingMachine() {
+        Snack.resetId();
         Coke coke = new Coke(15, 3);
         Pepsi pepsi = new Pepsi(15, 3);
         Cheetos cheetos = new Cheetos(15, 2.5);

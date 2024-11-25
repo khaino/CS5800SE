@@ -28,7 +28,7 @@ public class DispensingSnack extends StateOfVendingMachine {
         double amt = this.vendingMachine.getInsertedAmount();
         System.out.print("Chain of responsibility: ");
         this.vendingMachine.getSnackDispenseHandler().dispense(selectedItem, amt);
-        String message = "Completed!";
+        String message = "Completed transaction!";
         System.out.println(message);
         this.vendingMachine.setState(new Idle(this.vendingMachine));
         return message;

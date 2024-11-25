@@ -12,7 +12,7 @@ public class IdleTest {
 
     @Test
     public void testSelectSnack() {
-        int snackId = 61;
+        int snackId = 1;
         Snack snack = vendingMachine.getSnack(snackId);
         String expected = "You have selected: " + snackId + " (" + snack.getName() + ")";
         String actual = idle.selectSnack(snackId);

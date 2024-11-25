@@ -35,6 +35,10 @@ public abstract class Snack {
         return name;
     }
 
+    public static void resetId() {
+        idIncremnt = 1;
+    }
+
     @Override
     public String toString() {
         return "Snack{" +

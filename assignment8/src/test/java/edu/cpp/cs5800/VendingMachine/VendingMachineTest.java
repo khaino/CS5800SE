@@ -11,7 +11,7 @@ public class VendingMachineTest {
 
     @Test
     public void testGetSnack() {
-        assertEquals("Coke", vendingMachine.getSnack(83).getName());
+        assertEquals("Coke", vendingMachine.getSnack(1).getName());
     }
 
     @Test

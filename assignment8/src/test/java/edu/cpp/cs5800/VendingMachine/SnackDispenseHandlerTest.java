@@ -16,6 +16,7 @@ public class SnackDispenseHandlerTest {
 
     @Test
     public void testDispenseWithNotEnoughQty() {
+        assertTrue(handler.dispense(6, 10));
         assertFalse(handler.dispense(6, 10));
     }
 

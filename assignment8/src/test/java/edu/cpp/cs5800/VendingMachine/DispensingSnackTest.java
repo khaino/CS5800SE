@@ -23,7 +23,7 @@ public class DispensingSnackTest {
 
     @Test
     public void testDispenseSnack() {
-        String expected = "Completed!";
+        String expected = "Completed transaction!";
         assertEquals(expected, dispensingSnack.dispenseSnack());
     }
 }
