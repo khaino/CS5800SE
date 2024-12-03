@@ -1,0 +1,45 @@
+@startuml
+
+start
+:Open YouTube App;
+:Log In to your Account;
+  if (Switch Channel)
+    :Yes;
+    :Select Channel;
+  else
+    :No;
+  endif
+
+:Click Upload Button (+);
+Repeat
+if (Select Video File)
+   :File is Valid;
+else
+   :Invaid File;
+   :Select a Valid Video;
+endif
+Repeat while
+:Provide Video Details (Title, Description, etc.);
+
+Repeat
+:Validation;
+if (File Valid?)
+
+  :Yes;
+  if (Edit Video?)
+    :Yes;
+    :Edited;
+  else
+    :No;
+
+  endif
+:Publish Video;
+
+stop
+else
+  :Error: Try Again;
+endif
+backward:Check Video Details \n(Title, Description, etc.);
+Repeat while
+
+@enduml

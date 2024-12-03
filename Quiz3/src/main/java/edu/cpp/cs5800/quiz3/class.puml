@@ -1,0 +1,161 @@
+@startuml
+'https://plantuml.com/class-diagram
+interface Observer {
+    +update(String message)
+}
+
+interface Observable {
+    +subscriber(User observer)
+    +unsubscribe(User observer)
+    +notifyObservers(String string)
+}
+
+class User {
+    -int id
+    -String name
+    +update(String message)
+}
+
+class Creator {
+
+}
+
+Observer <|-- User
+User <|-- Creator
+
+abstract Video  {
+    -int id
+    -String title
+    -String description
+    -int duration
+    -User createdBy
+    -Comment[] comments
+    -Reaction[] reactions
+
+    +play()
+    +pause()
+    +share(User user)
+    +comment(User user, String text)
+    +saveToWatchLater(User user)
+    +next()
+}
+
+class LongVideo {
+    +toggleCaption()
+    +next()
+}
+
+Video <|-- LongVideo
+
+class Reel {
+    +next()
+}
+
+Video <|-- Reel
+
+interface Iterator<Video> {
+    +boolean hasNext()
+    +Video next()
+}
+
+class VideoIterator {
+    +boolean hasNext()
+    +Video next()
+}
+
+Iterator <|-- VideoIterator
+
+interface IterableByUser {
+    +Iterator<Video> search(String keywords)
+    +Iterator<Video> getRecommendations(User user, String keywords)
+}
+
+class Channel {
+    -Creator owner
+    -Video[] videos
+    -User[] subscribers
+
+    +subscriber(User user)
+    +unsubscribe(User user)
+    +notifyObservers(String string)
+}
+
+Observable <|-- Channel
+
+Channel "1" o-- "0..*" Video
+Channel "1" *-- "0..*" User
+
+Creator "1" *-- "0..*" Channel
+
+class Reaction {
+    +click()
+}
+
+class Like {
+    -User likedBy
+}
+
+class DisLike {
+    -User dislikedBy
+}
+
+Reaction <|-- Like
+Reaction <|-- DisLike
+Video "1" o--"0..*" Reaction
+
+class Comment {
+    -String text
+    -User commentedBy
+}
+Video "1" o-- "0..*" Comment
+Comment o-- User
+
+
+interface RequestVideo {
+    +Video getVideo(int id)
+'    +Iterator<Video> search(String keywords)
+'    +Iterator<Video> getRecommendations(User user, String keywords)
+}
+
+IterableByUser <|-- RequestVideo
+
+class VideoServer {
+    -Channel<String,Video[]> channels
+    -RecommendationEngine recommendationEngine
+
+    +Video getVideo(int id)
+    +bool createChannel(String name, Creator user)
+    +Video createVideo(Channel channel, Video video, Creator user)
+    +bool deleteVideo(Video video, Creator user)
+    +Iterator<Video> search(String keywords)
+    +Iterator<Video> getRecommendations(User user, String keywords)
+}
+
+RequestVideo <|-- VideoServer
+'IterableByUser <|-- VideoServer
+
+class RecommendationEngine {
+    +Iterator<Video> recommendVideos(User user)
+}
+
+VideoServer o-- RecommendationEngine
+
+VideoServer *--  Channel
+VideoServer o-- User
+
+class ProxyEdgeVideoServer {
+    -VideoServer videoServer
+    -Video<key,Video> videos
+
+    +Video getVideo(int id)
+    +Iterator<Video> search(String keywords)
+    +Iterator<Video> getRecommendations(User user, String keywords)
+}
+
+RequestVideo <|-- ProxyEdgeVideoServer
+ProxyEdgeVideoServer o-- VideoServer
+ProxyEdgeVideoServer o-- Video
+
+
+
+@enduml

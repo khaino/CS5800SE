@@ -1,0 +1,125 @@
+@startuml
+start
+if (   Open \nYouTube\n    App) then
+:Search;
+:Input Keyword;
+:Select Videos;
+if (Starts Playing) then
+        :Let it Play;
+        else
+        :Pause;
+        endif
+
+        if (Toggle Captions) then
+            if (Caption on) then
+            : Choose \nLanguage;
+            else
+            :Default;
+            endif
+        else
+        :   Default \n(Caption off);
+        endif
+
+
+else
+    if (        Browse \nRecommendations) then
+    :Watch Videos?;
+    :Select Video ;
+    ->Yes;
+
+        if (Starts Playing) then
+        :Let it Play;
+        else
+        :Pause;
+        endif
+
+        if (Toggle Captions) then
+            if (Caption on) then
+            : Choose \nLanguage;
+            else
+            :Default;
+            endif
+        else
+        :Default \n(Caption off);
+        endif
+    else
+       :Watch Reels?;
+        :Click on Reels;
+            if (Starts Playing) then
+            :Let it Play;
+            else
+            :Pause;
+            endif
+
+        :   Scroll\n(Up/Down);
+    endif
+endif
+
+split
+
+if (Likings) then
+:Like;
+:Saved to Liked\n Videos Library;
+:Like Count\n Increases;
+
+else
+:Dislike;
+:Dislike Count\n Increases;
+endif
+
+split again
+
+if (Comment on\n Video?) then
+:Yes;
+: Comment\n Published;
+:Comment Count\n     Increases;
+else
+:No;
+endif
+
+split again
+
+if (Share Video?) then
+:Yes;
+
+if (Copy Link) then
+:Yes;
+:Send to \nFriends;
+else
+:No;
+:  Share on \nSocial Media;
+endif
+
+else
+:No;
+endif
+
+split again
+
+if (Subscribe?) then
+:Yes;
+
+if (Notification\n  settings\n  enabled) then
+            :Keep it on;
+            else
+            :Turn it off;
+            endif
+else
+:No;
+endif
+
+split again
+
+if (Save for\n Later?) then
+:Yes;
+:Saved;
+else
+:No;
+endif
+end split
+:Close the Video;
+:  Return To \n   YouTube\n home screen ;
+:Close App;
+
+stop
+@enduml
