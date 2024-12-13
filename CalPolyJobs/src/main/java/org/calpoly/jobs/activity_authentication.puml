@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+title User Authentication (Activity Diagram)
+start
+
+:User goes to login page;
+:Display login form;
+
+:User enters credentials (username and password);
+:User clicks "Sign in" button";
+:Validate credentials;
+
+if (Are credentials valid?) then (Yes)
+    :Create user session;
+    :Redirect to user home page;
+    :Display login success message;
+else (No)
+    :Display login error message;
+    :Prompt user to retry username or password;
+endif
+
+stop
+
+@enduml

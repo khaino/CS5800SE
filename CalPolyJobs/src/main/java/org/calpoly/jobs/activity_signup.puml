@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+@startuml
+title User Registration (Activity Diagram)
+
+start
+
+:User goes to registration page;
+:Display registration form;
+:Enter User's detail such as First Name, Last Name, email
+:Input username;
+:Input password;
+:Input password confirmation;
+
+if (Is user employer) then (Yes)
+    :Input employer registration;
+    :Input employer license;
+else (No)
+
+endif
+:Submit registration form;
+:Validate user's inputs;
+
+  if (Is input valid?) then (Yes)
+    :Create user account;
+    :Display registration success message;
+  else (No)
+    :Display input validation error;
+  endif
+stop
+
+@enduml

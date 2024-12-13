@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor JobSeeker
+participant Client<<Web/Mobile>>
+participant Backend<<Servers>>
+participant Database
+participant FileStorage
+
+JobSeeker -> Client: Go to home page
+Client -> Backend: Go to home page
+return Home page
+Client->JobSeeker: Home page
+JobSeeker -> Client: Enter search keywords & filters
+JobSeeker -> Client: Click "Search" button
+Client -> Backend: Job search query
+Backend->Database: Retrieve Jobs using search query
+Database->Backend: Job list
+Backend -> Client: Job list
+Client->JobSeeker: Show job list at left panel
+loop#85c1e9 #f8f9f9 Job list
+    JobSeeker -> Client: Check <b>i</b>th job summary
+    alt #eafaf1 if job seeker want to know more
+        JobSeeker -> Client: Click <b>i</b>th job's title
+        Client -> Backend: Request the <b>i</b>th job
+        Backend -> Database: Query the <b>i</b>th job
+        Database -> Backend: Return <b>i</b>th job's data
+        Backend -> Client: Return <b>i</b>th job's detail
+        Client -> JobSeeker: Show <b>i</b>th job's detail at right panel
+        alt #ebf5fb interested to apply
+            JobSeeker -> Client: Click "Apply" button
+            Client -> Backend: Request job application form
+            Backend -> Client: Job application form
+            Client -> JobSeeker: Display job application form
+            JobSeeker -> Client: Upload resume
+            Client -> Backend: Upload resume
+            Backend -> FileStorage: Store resume
+            return storage link/id
+            Backend -> Client:  storage link/id
+            Client->JobSeeker: Display resume uploaded successfully
+
+            JobSeeker -> Client: Fill up application form
+            JobSeeker -> Client: Submit application
+            Client -> Backend: Send application
+            Backend->Backend: validate application
+            alt #eaecee Validation Success
+                Backend -> Database: Insert application
+                Database -> Backend: Send id and success message
+                Backend -> Client: Send id and success message
+                Client -> JobSeeker: Show success message
+            else Failure
+                Backend -> Client: Sent error message
+                Client -> JobSeeker: Show error message
+            end
+        end
+    end
+end
+
+@enduml

@@ -1,0 +1,286 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class User {
+    -String firstName
+    -String lastName
+    -String email
+    -String username
+    -String encryptedPassword
+    -Address address
+
+    + User(String firstName, String lastName, String email, String username, String encryptedPassword, Address address)
+
+    + String getFirstName()
+    + String getLastName()
+    + String getEmail()
+    + String getUsername()
+    + String getEncryptedPassword()
+    + Address getAddress()
+}
+
+class Employer {
+    -String license
+    -String registration
+
+    + Employer(String firstName, String lastName, String email, String username,
+        String encryptedPassword, Address address, String license, String registration)
+    + String getLicense()
+    + String getRegistration()
+}
+
+class AuthHandler {
+    -Database database
+    +User handle(username, password)
+}
+
+AuthHandler *-- Database
+
+class JobSeeker {
+    -WorkExperience[] experiences
+    -String[] skills
+    -String[] educations
+
+    + JobSeeker(String firstName, String lastName, String email, String username, String encryptedPassword,
+        Address address, WorkExperience[] experiences, String[] skills, String[] educations)
+
+    + WorkExperience[] getExperiences()
+    + String[] getSkills()
+    + String[] getEducations()
+}
+
+User <|-- Employer
+User <|-- JobSeeker
+
+class WorkExperience {
+    -String jobTitle
+    -Employer employer
+    -Date startDate
+    -Date endDate
+    -String responsibility
+
+    + WorkExperience(String jobTitle, Employer employer, Date startDate, Date endDate, String responsibility)
+    + String getJobTitle()
+    + Employer getEmployer()
+    + Date getStartDate()
+    + Date getEndDate()
+    + String getResponsibility()
+}
+
+JobSeeker "1" *-- "0..*" WorkExperience
+WorkExperience o-- Employer
+
+enum EmpType {
+    FULL-TIME
+    PART-TIME
+    INTERNSHIP
+}
+
+enum LocType {
+    REMOTE
+    HYBRID
+    ONSITE
+}
+
+class JobType {
+    -EmpType empType
+    -LocType locType
+
+    + JobType(EmpType empType, LocType locType)
+    + EmpType getEmpType()
+    + LocType getLocType()
+}
+
+JobType -- EmpType
+JobType -- LocType
+
+class Job {
+    -Long id
+    -String title
+    -String desc
+    -String salary
+    -String[] skills
+    -String[] requirements
+    -String[] responsibilities
+    -JobType jobType
+    -Employer employer
+
+    +Job(String title, String desc, String salary, String[] skills, String[] requirements,
+        String[] responsibilities,JobType jobType, Employer employer)
+    + Long getId()
+    + String getTitle()
+    + String getDesc()
+    + String getSalary()
+    + String[] getSkills()
+    + String[] getRequirements()
+    + String[] getResponsibilities()
+    + JobType getJobType()
+    + Employer getEmployer()
+}
+
+Job  *-- JobType
+
+Employer "1" *-- "0..*" Job
+
+class JobFactory <<FlyWeight>> {
+    -static Map<String, JobType>
+
+    +Job getJob(String title, String desc, String salary, Employer employer,
+        String[] requirements, EmpType empType, LocType locType)
+}
+
+JobFactory "1" *-- "0..*" JobType
+
+class JobBuilder <<Builder>> {
+    -String title
+    -String desc
+    -String salary
+    -String[] skills
+    -String[] requirements
+    -String[] responsibilities
+    -EmpType empType
+    -LocType locType
+    -JobFactory jobFactory
+
+    +JobBuilder setTitle(String title)
+    +JobBuilder setDesc(String desc)
+    +JobBuilder setDesc(String salary)
+    +JobBuilder addSkill(String skill)
+    +JobBuilder addRequirement(String req)
+    +JobBuilder addResponsibility(String res)
+    +JobBuilder setEmpType(EmpType empType)
+    +JobBuilder setLocType(LocType locType)
+    +Job build()
+}
+
+JobBuilder *-- JobFactory
+
+class JobApplication {
+    -Long id
+    -Job job
+    -JobSeeker applicant
+    -File resume
+    -AplState state
+
+    +JobApplicationState getState()
+    +void setState(JobApplicationState state)
+    +void moveToNextStep()
+}
+
+Job "1" *-- "0..*" JobApplication
+JobSeeker "1" *-- "0..*" JobApplication
+
+interface JobApplicationState <<State>> {
+    +void moveToNextStep()
+}
+
+class NewState {
+    -JobApplication application
+    +void moveToNextStep()
+}
+
+JobApplicationState <|-- NewState
+NewState *-- JobApplication
+
+class AcceptState {
+    -JobApplication application
+    +void moveToNextStep()
+}
+
+JobApplicationState <|-- AcceptState
+AcceptState *-- JobApplication
+
+class RejectState {
+    -JobApplication application
+    +void moveToNextStep()
+}
+
+JobApplicationState <|-- RejectState
+RejectState *-- JobApplication
+
+class ClosedState {
+    -JobApplication application
+    +void moveToNextStep()
+}
+
+JobApplicationState <|-- ClosedState
+ClosedState *-- JobApplication
+
+
+class Database <<Singleton>> {
+    -User[] users
+    -Job[] jobs
+    -JobApplication[] applications
+
+    +static Database getInstance()
+}
+
+class CalPolyJobServer {
+    -Database database
+    -FileStorage fileStore
+    -RecommendationEngine recommender
+
+    +JobIterator getJobs(Users user, SearchFilter[] filters)
+    +Job getJob(Long jobId)
+    +Job updateJob(Job job)
+    +Job storeJob(Job job)
+    +Bool deleteJob(Long jobId)
+
+    +Users getUsers()
+    +User getUser(Long userId)
+    +User updateUser(User user)
+    +User storeUser(User user)
+    +Bool deleteUser(Long UserId)
+
+    +Applications getApplications()
+    +Application getApplication(Long aplId)
+    +Application updateApplication(Application apl)
+    +Application storeApplication(Application apl)
+    +Bool deleteApplication(Long aplId)
+
+    +String uploadFile(File file)
+    +Bool deleteFile(String id)
+}
+
+class RecommendationEngine {
+    +Jobs recommendJobs(User user)
+}
+
+class FileStorage {
+    +String storeFile(File file)
+}
+
+CalPolyJobServer *-- Database
+CalPolyJobServer *-- FileStorage
+CalPolyJobServer *-- RecommendationEngine
+
+Database *-- User
+Database *-- Job
+Database *-- JobApplication
+
+
+interface Iterator<T> <<Iterator>>{
+    +bool hasNext()
+    +T getNext()
+}
+
+interface JobIteratorByUser <<Iterator>>{
+    +JobIterator getJobs(User user, Filter[] filters)
+}
+
+JobIteratorByUser <|-- CalPolyJobServer
+
+class JobIterator<Job> {
+    -int size
+    -int currentIdx
+    -Jobs[] jobs
+
+    +JobIterator(Jobs[] jobs)
+
+    +bool hasNext()
+    +Job getNext()
+}
+Iterator <|-- JobIterator
+JobIteratorByUser -- JobIterator
+
+@enduml

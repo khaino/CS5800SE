@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor Employer
+participant Client<<Web/Mobile>>
+participant Backend<<Servers>>
+participant Database
+
+Employer -> Client: Request home page
+Client -> Backend: Request home page
+Backend -> Client: Home page
+Client -> Employer: Show Home Page
+Employer -> Client: Click "Create Job" button
+Client -> Backend: Request job creation form
+return Job creation form
+Client -> Employer: Display job creation form
+
+Employer -> Client: Fill up application details
+Employer -> Client: Click "Submit" button
+Client -> Backend: Send the form
+Backend -> Backend: Perform validation
+alt #eafaf1 Validation Success
+    Backend -> Database: Insert job in database
+    alt #ebf5fb Insertion Success
+        Database -> Backend: Insert job successfully
+        Backend -> Client: Send job creation success message
+        Client -> Employer: Display job creation success message
+    else Insertion Failure
+        Database -> Backend: Job insertion failure
+        Backend -> Client: Send job insertion failure message
+        Client -> Employer: Display job insertion failure message
+    end
+else Validation Failure
+     Backend -> Client: Send validation error message
+     Client -> Employer: Display validation error message
+end
+
+@enduml

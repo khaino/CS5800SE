@@ -1,0 +1,41 @@
+@startuml
+title Job Search & Application (Activity Diagram)
+
+start
+
+:User (Job Seeker) opens home page;
+:System displays home page with recommended jobs;
+
+if (Wants to search jobs?) then (Yes)
+    :Enters search keywords, location;
+    :Enter other search criteria such as job type, salary, etc;
+    :Click "Search" button;
+    :System displays search result;
+endif
+
+repeat
+  :User checks <b>i</b>th job summary;
+  if (Wants to know more?) then (Yes)
+    :Click job title;
+    :System shows job details in the right panel;
+    :User check job details;
+
+    if (Interested to apply?) then (Yes)
+      :Click "Apply" button;
+      :Upload resume;
+      :Fill out application form;
+      :Submit application;
+
+      :System validates application data;
+      if (Validation success?) then (Yes)
+        :Show application success message;
+      else (No)
+        :Display error message;
+      endif
+    endif
+  endif
+  backward: Go to next job;
+repeat while (More jobs to check?)
+
+stop
+@enduml

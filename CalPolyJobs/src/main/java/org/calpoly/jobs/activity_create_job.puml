@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+title Create Job (Activity Diagram)
+
+start
+    :Employer logs in to job board (refer to authentication);
+    :Redirect employer to home page;
+    :Employer clicks "Create Job" button;
+    :Display job creation form;
+    repeat
+        :Employer enters (or correct) job details such as title, description, skills, requirements, responsibilities;
+        :Employer select Employment Type (FULL_TIME, PART_TIME, INTERNSHIP);
+        :Employer Select Location Type (ONSITE, REMOTE, HYBRID);
+
+        :Submit job creation form;
+        :Validate form inputs;
+
+        backward:Prompt employer to correct form data;
+    repeat while (Is input valid?) is (no) not (yes)
+
+    :Create JobType object;
+    :Create Job object with JobType and Employer details;
+    :Save Job to database;
+    :Display job creation success message;
+stop
+
+
+@enduml
