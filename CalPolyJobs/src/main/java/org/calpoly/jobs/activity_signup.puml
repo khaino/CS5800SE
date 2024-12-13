@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
 
-@startuml
 title User Registration (Activity Diagram)
 
 start

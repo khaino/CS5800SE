@@ -2,6 +2,7 @@
 'https://plantuml.com/activity-diagram-beta
 
 title User Authentication (Activity Diagram)
+
 start
 
 :User goes to login page;
