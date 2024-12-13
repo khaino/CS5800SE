@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+'Sequence Diagram to browse and apply jobs
 autonumber
 
 actor JobSeeker
