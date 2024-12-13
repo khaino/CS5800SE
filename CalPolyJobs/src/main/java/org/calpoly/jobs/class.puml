@@ -104,9 +104,10 @@ class Job {
     -String[] responsibilities
     -JobType jobType
     -Employer employer
+    -Date expiresAt
 
     +Job(String title, String desc, String salary, String[] skills, String[] requirements,
-        String[] responsibilities,JobType jobType, Employer employer)
+        String[] responsibilities,JobType jobType, Employer employer, Date expiresAt)
     + Long getId()
     + String getTitle()
     + String getDesc()
@@ -126,7 +127,7 @@ class JobFactory <<FlyWeight>> {
     -static Map<String, JobType>
 
     +Job getJob(String title, String desc, String salary, Employer employer,
-        String[] requirements, EmpType empType, LocType locType)
+        String[] requirements, EmpType empType, LocType locType, Date expiresAt)
 }
 
 JobFactory "1" *-- "0..*" JobType
@@ -140,6 +141,7 @@ class JobBuilder <<Builder>> {
     -String[] responsibilities
     -EmpType empType
     -LocType locType
+    -Date expiresAt
     -JobFactory jobFactory
 
     +JobBuilder setTitle(String title)
@@ -150,6 +152,7 @@ class JobBuilder <<Builder>> {
     +JobBuilder addResponsibility(String res)
     +JobBuilder setEmpType(EmpType empType)
     +JobBuilder setLocType(LocType locType)
+    +JobBuilder setExpiresAt(Date expiresAt)
     +Job build()
 }
 
